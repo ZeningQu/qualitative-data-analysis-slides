@@ -1,0 +1,62 @@
+@import url(https://fonts.googleapis.com/css?family=Oregano&display=swap);
+@import '../../slides/theme/font-def.scss';
+
+.distill-lite {
+  /* Some vars */
+  $background-color: hsl(50, 5, 97);
+  $black: hsl(200, 40, 10);
+  $white: $background-color;
+  $base-font-size: $font-large;
+  $base-line-height: 1.5em;
+
+  .groucho {
+    position: relative;
+    font-family: 'Oregano', cursive;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+
+    footer {
+      font-family: 'Oregano', cursive;
+      font-size: 0.6em;
+      font-weight: 700;
+      color: darken($white, 15%);
+      float: right;
+
+      &:before {
+        content: '\2015';
+      }
+    }
+
+    // the before "
+    &:before {
+      content: '\201C';
+      position: absolute;
+      top: 0.15em;
+      left: -0.25em;
+      color: darken($white, 7%);
+      font-size: 6em;
+      // z-index: 0;
+    }
+
+    // the after "
+    // &:after {
+    //     content: '\201D';
+    //     position: absolute;
+    //     bottom: -0.25em;
+    //     right: -0.25em;
+    //     font-size: 6em;
+    //     font-style: italic;
+    //     color: darken($white, 7%);
+    //     z-index: 0;
+    //  }
+  }
+
+  .container {
+    max-width: 80%;
+    margin: 2em auto;
+  }
+
+  blockquote {
+    margin-bottom: 2em;
+  }
+}

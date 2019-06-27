@@ -1,0 +1,263 @@
+import { Quote, Credit, Regression, Today, inlineEquation, blockEquation, Slider, ScatterPlot } from '../components'; 
+import { Grid, Title, Body, LeftGolden, RightGolden } from '../components/layout';
+import { CATemp } from '../data';
+import { TRAIN, Train, train, VAL, Val, val, TEST, Test, test, FUTURE, PolyContext, Poly } from './cv-backend'
+
+# Cross-Validation
+
+<Today />
+
+By: [Zening Qu](http://zeningqu.github.io/)
+
+<Credit>
+  Based on slides of 
+  [Prof. Kevin Jamieson](https://homes.cs.washington.edu/~jamieson/about.html),
+  [Prof. Ott Toomet](http://www.obs.ee/~siim/), and
+  [Prof. Bill Howe](https://faculty.washington.edu/billhowe/).
+</Credit>
+
+--- 
+
+<Quote 
+  text={`If someone asks you why a machine learning model fails to generalize. 
+  Without knowing anything, you answer 'overfitting!' 
+  90% of the time you will be right.`}
+  footer={`A famous ML researcher, 2017`}
+/>
+
+
+---
+
+<PolyContext>{c => 
+<Grid>
+  <Title text='Task: Learn A Polynomial Model to Fit the Data'/>
+
+  <LeftGolden position='top'>
+    <Slider instruction={`Degree of freedom`}
+    min={0} max={40} value={c.degree} step={1}
+    onChange={c.fit}/>
+  </LeftGolden>
+
+  <LeftGolden position='bottom'>
+    {blockEquation(c.model.toLaTeX(2))}
+  </LeftGolden>
+
+  <RightGolden>
+    <ScatterPlot model={c.model}/>
+  </RightGolden>
+</Grid>
+}</PolyContext>
+
+---
+
+<PolyContext defaultDegree={1} data={CATemp}>{c =>
+<Grid>
+  <Title text='A Myth on the Internet: Overfitting == Learning Noise'/>
+
+  <LeftGolden>
+    <Slider instruction={`Degree of freedom`}
+      min={0} max={40} value={c.degree} step={1}
+      onChange={c.fit}/>
+  </LeftGolden>
+
+  <RightGolden>
+    <ScatterPlot model={c.model}/>
+  </RightGolden>
+  
+</Grid>
+}</PolyContext>
+
+---
+
+<Grid>
+  <Title text='Another Myth: Overfitting == Complex Decison Boundary'/>
+  <Body>
+    <img src="./src/slides/figs/overfitting-myth.png"/>
+  </Body>
+</Grid>
+
+
+---
+
+## These myths are WRONG, or at least TOO SIMPLE
+
+You can't tell if a model overfits by looking at how it fits the TRAINING data.
+
+You should also look at how it fits the data it hasn't seen before.
+
+---
+
+<Grid>
+  <Title text='Defining Overfit, Underfit, and the Right Fit!'/>
+
+  <Body>
+  <img src="./src/slides/figs/overfitting-def.png"/>
+
+  Underfit: model performs badly on both <TRAIN/> and <FUTURE/> data.
+  
+  The Right fit: model performance on <FUTURE/> data reaches optimum.
+  
+  Overfit: model performance on <TRAIN/> data improves, but model performance on <FUTURE/> data worsens.
+  </Body>
+</Grid>
+
+---
+
+
+Machine Learning is all about generalizing to 
+
+## <FUTURE/>
+
+---
+
+But how do we get 
+
+## <FUTURE/>
+
+if it lives in the future?
+
+---
+
+We use the data we have today
+
+to simulate the data of the future
+
+---
+
+**_If done correctly,_** cross-validation can 
+
+give you **_unbiased estimation_** of 
+
+how your model would perform in the future
+
+---
+
+<Grid>
+  <Title text={`How Cross-Validation Works`}/>
+  <Body>
+    <Regression scene={`cv`}/>
+  </Body>
+</Grid>
+
+
+---
+
+# Never ever ever ever ever ever ever  
+
+# ever ever ever train on the <test/> set
+
+--- 
+
+# Don't even pick hypermarameters 
+
+# on the <test/> set
+
+---
+
+# Pretend that we don't have 
+
+# the <test/> set 🙈
+
+---
+
+# Why? 🤔
+
+---
+  
+# We want <test/> error to be unbiased 
+
+<Test/> error is unbiased if and only if it is never used to train the model or even pick the model parameters.
+
+<Train/> error is optimistically biased because it is evaluated on the data it trained on.
+
+
+--- 
+
+# Unfortunately, 
+
+# People Violate This Rule 
+
+# ALL THE TIME
+
+---
+
+# 🤦‍♀️
+
+---
+
+# On <TRAIN/> and <VAL/> 
+
+We should use either Leave-One-Out Cross-Validation, 
+
+or k-fold Cross-Validation (k = 5, 10...) to find the best model
+
+---
+
+<Grid>
+  <Title text='Leave-One-Out Cross-Validation (LOO CV)' />
+  <Body>
+  <img src="./src/slides/figs/kevin-loo-slide.png"/>
+  </Body>
+</Grid>
+
+---
+
+<Grid>
+  <Title text='Leave-One-Out Cross-Validation (LOO CV)' />
+  <Body>
+  <img src="./src/slides/figs/cv-loo.png"/>
+  </Body>
+</Grid>
+
+---
+
+<Grid>
+  <Title text='Leave-One-Out Cross-Validation (LOO CV)' />
+  <Body>
+  <img src="./src/slides/figs/kevin-loo-unbiased.png"/>
+  </Body>
+</Grid>
+
+---
+
+<Grid>
+  <Title text='LOO CV is Computationally Expensive!' />
+  <Body>
+  <img src="./src/slides/figs/kevin-loo-cost.png"/>
+  </Body>
+</Grid>
+
+---
+
+<Grid>
+  <Title text='k-fold Cross-Validation (k = 5)' />
+  <Body>
+  <img src="./src/slides/figs/cv-5-fold.png"/>
+  </Body>
+</Grid>
+
+---
+
+<Grid>
+  <Title text='k-fold Cross-Validation (k = 10)' />
+  <Body>
+  <img src="./src/slides/figs/cv-10-fold.png"/>
+  </Body>
+</Grid>
+
+
+
+---
+
+<Grid>
+  <Title text='Cross-Validation Recap' />
+
+  <Body>  
+  **Split Data:** <TRAIN/> - <VAL/> - <TEST/>
+
+  **Model Selection:** Use k-fold cross-validation on <TRAIN/> to train predictor and choose magic parameters <span className="grey"> (e.g., degrees of polynomials, pseudo counts, regularization parameter, kernel bandwidth, the number of clusters, the number of nearest neighbors, network architecture)</span>
+
+  **Model Assessment:** Use <TEST/> to assess the accuracy or error of the model you output
+  </Body>
+  
+</Grid>

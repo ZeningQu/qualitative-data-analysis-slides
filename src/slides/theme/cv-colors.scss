@@ -1,0 +1,23 @@
+@import './color-def.scss';
+
+$color-train: $color-blue;
+$color-val: $color-red;
+$color-test: $color-orange;
+
+.distill-lite {
+  .train {
+    fill: $color-train;
+    color: $color-train;
+  }
+  
+  .validation {
+    fill: $color-val;
+    color: $color-val;
+  }
+  
+  .test {
+    fill: $color-test;
+    color: $color-test;
+  }
+}
+

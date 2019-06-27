@@ -1,0 +1,26 @@
+.distill-lite {
+  .btn-group {
+    position: absolute;
+    left: 1em;
+    top: 30%;
+    z-index: 1;
+  }
+
+  .btn-group .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    border-radius: 12px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  .btn-group .button:hover {
+    background-color: #3e8e41;
+  }
+}

@@ -1,0 +1,31 @@
+@import url(https://fonts.googleapis.com/css?family=Nanum+Myeongjo&display=swap);
+// @import url(https://fonts.googleapis.com/css?family=Codystar|Fredericka+the+Great&display=swap);
+
+@import './font-def.scss';
+
+.distill-lite {
+  div {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: $font-normal;
+  }  
+
+  pre * { font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; }
+
+  h1 { font-size: $font-huge; }
+
+  h2 { font-size: $font-large; }
+
+  .small-font {
+    font-size: $font-small;
+    * { font-size: $font-small; }
+  }
+  
+  .tiny-font {
+    font-size: $font-tiny;
+    * { font-size: $font-tiny; }
+  }
+  
+  .tick text { font-size: $font-tiny; }
+
+  span, a { font-size: 1em; }
+}

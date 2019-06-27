@@ -1,0 +1,59 @@
+.distill-lite {
+  .grid-container {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template: repeat(100, 1fr) / repeat(100, 1fr);
+
+    .title {
+      grid-row: 1 / 21;
+      grid-column: 1 / 101;
+      place-self: center;
+    }
+
+    .body {
+      grid-row: 21 / 91;
+      grid-column: 11 / 91;
+      display: grid;
+      align-content: space-around;
+      justify-content: start;
+
+      img {
+        justify-self: center;
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      p {
+        text-align: justify;
+      }
+    }
+
+    /* we use the golden ratio to divide left (small) and right (large),
+      and we use the golde ratio again to dive the left into top (small) and bottom (large) */
+    .left-golden {
+      grid-row: 21 / 91;
+      grid-column: 11 / 39;
+      display: grid;
+      align-content: space-around;
+      justify-content: justify;
+    }
+
+    .top-left-golden {
+      @extend .left-golden;
+      grid-row: 21 / 48;
+    }
+
+    .bottom-left-golden {
+      @extend .left-golden;
+      grid-row: 48 / 91;
+    }
+
+    .right-golden {
+      grid-row: 21 / 91;
+      grid-column: 39 / 91;
+      display: grid;
+    }
+  }
+
+}

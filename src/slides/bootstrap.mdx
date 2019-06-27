@@ -1,0 +1,104 @@
+import { Credit, Today, Quote, Video, inlineEquation, blockEquation } from '../components'
+import { Grid, Title, Body } from '../components/layout'
+
+# Bootstrap
+
+<Today />
+
+By: [Zening Qu](http://zeningqu.github.io/)
+
+<Credit>
+  Based on slides of
+  [Prof. Kevin Jamieson](https://homes.cs.washington.edu/~jamieson/about.html).
+</Credit>
+
+---
+
+<Grid>
+  <Title text='Limitations of CV' />
+
+  <Body>
+  An 80/20 split throws out a relatively large amount of data if only have, say, 20 examples.
+
+  Test error is informative, but how accurate is this number? (e.g., 3/5 heads vs. 30/50)
+
+  How do I get confidence intervals on statistics like the median or variance of a distribution?
+
+  Instead of the error for the entire dataset, what if I want to study the error for a particular example x?
+  </Body>
+</Grid>
+
+---
+
+<Quote
+  text={`The most important innovation in statistics of the last 40 years`}
+  footer={`A famous ML researcher and statistician, 2015`}
+/>
+
+---
+
+# The Bootstrap
+
+Developed by Bradley Efron in 1979
+
+---
+
+<Video url="https://www.youtube-nocookie.com/embed/H2tOhMaXWvI" />
+
+
+---
+
+<Quote
+  text={`Boostrap is not a substitute for thinking`}
+  footer={`A famous econometrician, 2006`}
+/>
+
+---
+
+
+<Grid>
+  <Title text='Probability Density Function, Cumulative Distribution Function' />
+  <Body>
+  <img src="./src/slides/figs/pdf-cdf.gif"/>
+  </Body>
+</Grid>
+
+---
+
+<Grid>
+  <Title text='Empirical Cumulative Distribution Function' />
+  <Body>
+  <img src="./src/slides/figs/ecdf.png"/>
+  </Body>
+</Grid>
+
+---
+
+<Grid>
+  <Title text='Bootstrap: Basic Idea' />
+  <Body>
+  <img src="./src/slides/figs/kevin-bootstrap-idea-2.png"/>
+  </Body>
+</Grid>
+
+---
+
+<Grid>
+  <Title text='Bootstrap: Applications' />
+  <Body>
+  <img src="./src/slides/figs/kevin-bootstrap-applications.png"/>
+  </Body>
+</Grid>
+
+---
+
+<Grid>
+  <Title text='Bootstrap' />
+  <Body>
+  <img src="./src/slides/figs/kevin-bootstrap-good-bad.png"/>
+  </Body>
+</Grid>
+
+---
+
+# Thank you!

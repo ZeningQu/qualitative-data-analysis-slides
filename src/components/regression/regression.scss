@@ -1,0 +1,53 @@
+@import '../../slides/theme/cv-colors.scss';
+
+.distill-lite {
+  %line {
+    stroke: black;
+    stroke-width: 2px;
+    fill: none;
+  }
+
+  circle {
+    fill-opacity: .9;
+    fill: $color-smoke;
+  }
+
+  .regression, .train-mse, .val-mse, .residual-stick {
+    @extend %line;
+  }
+
+  .residual-stick {
+    stroke: #4CAF50;
+  }
+
+  .train-mse {
+    stroke: $color-train;
+  }
+
+  .val-mse {
+    stroke: $color-val;
+  }
+
+  .axis line {
+    stroke: #ddd;
+  }
+  .axis .domain {
+    display: none;
+  }
+  
+  .control-panel {
+    text-align: left;
+  }
+  
+  .hidden {
+    visibility: hidden;
+  }  
+
+  .residual, .average, .square {
+    &:hover {
+      color: #4CAF50;
+      cursor: pointer;
+    }
+  }
+}
+
